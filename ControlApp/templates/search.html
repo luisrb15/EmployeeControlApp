@@ -2,22 +2,21 @@
 
 {% block content %}
   <h1>Buscar empleado</h1>
-  <div>
-      <label for="employee_name">Nombre del empleado:</label>
-      <select id="employee_select" class="form-select">
-          {% for employee in employees %}
-              <option value="{{ employee.id }}"> {{ employee.name }} {{ employee.last_name }} </option>
-          {% endfor %}
-      </select>
-  </div>
-  <button onclick="searchEmployee()">Buscar</button>
+  <form action="{% url 'ControlApp:employee_days' id=employee.id %}" method="GET">
+    <div class="form-group">
+        <label for="employee_name">Nombre del empleado:</label>
+        <select id="employee_select" class="form-select">
+            {% for employee in employees %}
+                <option value="{{ employee.id }}"> {{ employee.id }} {{ employee.last_name }} </option>
+            {% endfor %}
+        </select>
+    </div>
+    <div>
+      <button type="submit">Buscar</button>
+    </div>
+  </form>
+  {% comment %} <button><a href="{% url 'ControlApp:employee_days' id=employee.id %}"> Buscar </a></button> {% endcomment %}
 
-  <script>
-    function searchEmployee() {
-        var employeeId = document.getElementById('employee_select').value;
-        window.location.href = "{% url 'ControlApp:employee_days' employee_id='__EMPLOYEE_ID__' %}".replace('__EMPLOYEE_ID__', employeeId);
-    }
-  </script>
 {% endblock %}
 
 

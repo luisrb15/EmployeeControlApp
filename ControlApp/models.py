@@ -14,8 +14,8 @@ class Employee(models.Model):
 
 class Attendance(models.Model):
     employee = models.ForeignKey(Employee, on_delete=models.CASCADE)
-    time_in = models.TimeField(null=True, blank=True)
-    time_out = models.TimeField(null=True, blank=True)
+    time_in = models.DateTimeField(null=True, blank=True)
+    time_out = models.DateTimeField(null=True, blank=True)
     is_backup = models.BooleanField(default=False)
     def __str__(self):
         return str(self.id) + '-' + str(self.employee)

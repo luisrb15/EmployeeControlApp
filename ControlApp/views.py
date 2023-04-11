@@ -33,7 +33,6 @@ def logout_view(request):
 
 @login_required
 def dashboard(request):
-    print('----------\n', 'estoy en dashboard\n', '---------')
     name = f'{request.user.employee.name} {request.user.employee.last_name}'
     is_present = request.user.employee.is_present
     context = {'name': name, 'is_present': is_present, 'year': year}
@@ -41,13 +40,7 @@ def dashboard(request):
 
 @login_required
 def attendance(request):
-    print('--------', '\n' ,request, '\n', '---------')
-    if request.method == 'POST':
-        print('--------\n', 'METHOD POST' ,request.POST, '\n', '---------')
-        print('--------\n', 'employee id' ,request.user.employee.id, '\n', '---------')
-        print('--------\n', 'employee date joined' ,request.user.employee.date_joined, '\n', '---------')
-        print('--------\n', 'employee is present' ,request.user.employee.is_present, '\n', '---------')
-        
+    if request.method == 'POST':    
         employee_id = request.user.employee.id
         employee = Employee.objects.get(pk=employee_id)
         if request.user.employee.is_present:
@@ -57,7 +50,6 @@ def attendance(request):
                 last_attendance.save()
             employee.is_present = False
             employee.save()
-            print('--------\n', 'employee',employee, '\n---------')
         else:     
             time_in = datetime.now()
             attendance = Attendance(employee=employee, time_in=time_in)
@@ -73,13 +65,12 @@ def attendance(request):
 
 @login_required
 def thanks(request):
-    print('--------\n is present?', request.user.employee.is_present, '\n---------')
     context = {'present': request.user.employee.is_present, 'year':year}
     return render(request, 'thanks.html', context)
 
 @staff_member_required
-def employee_days(request, employee_id):
-    employee = Employee.objects.get(id=employee_id)
+def employee_days(request, id):
+    employee = Employee.objects.get(id=id)
     attendances = Attendance.objects.filter(employee=employee)
     context = {'employee': employee, 'attendances': attendances, 'year': year}
     return render(request, 'employee_days.html', context)
