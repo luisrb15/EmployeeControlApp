@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}Empleado{% endblock title %}
+
+{% block content %}
+
+</h1>{{ employee.name }} {{ employee.last_name }}  </h1>
+
+{% for attendance in attendances %}
+<ul>
+    <li> {{ attendance.time_in }} - {{ attendance.time_out }}  </li>
+</ul>
+{% endfor %}
+
+{% endblock content %}
+
+
+

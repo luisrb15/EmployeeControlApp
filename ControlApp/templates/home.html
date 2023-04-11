@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<div class="home">
+    <h1>Bienvenido/a a La Flor del Bambú!</h1>
+    <button><a href="{% url 'ControlApp:login' %}">Login</a></button>
+</div>
+{% endblock %}

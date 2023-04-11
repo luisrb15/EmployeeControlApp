@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}Saludo{% endblock %}
+
+{% block content %}
+{% if present %}
+<div class="thanks-message">
+    <h1>Bienvenido/a!</h1>
+    <p>Que tengas una buena guardia!</p>
+</div>
+{% else %}
+<div class="thanks-message">
+    <h1>Gracias!</h1>
+    <p>Que descanses!</p>
+</div>
+{% endif %}
+<p>Volviendo a página principal en <span id="countdown"></span> segundos...</p>
+<script>
+    // Function to redirect to the homepage
+    function redirectToHomepage() {
+        window.location.href = "/";
+    }
+
+    // Define the number of seconds to wait before redirecting
+    var countDownSeconds = 5;
+
+    // Function to update the countdown timer
+    function updateCountdown() {
+        var countdownElement = document.getElementById("countdown");
+        countdownElement.innerHTML = countDownSeconds;
+        countDownSeconds--;
+        if (countDownSeconds < 0) {
+        clearInterval(countdownIntervalId);
+        redirectToHomepage();
+        }
+    }
+
+    // Start the countdown timer
+    var countdownIntervalId = setInterval(updateCountdown, 1000);
+</script>
+{% endblock %}
