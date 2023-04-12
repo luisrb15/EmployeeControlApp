@@ -9,9 +9,6 @@ from .models import Employee, Attendance
 
 year = datetime.now().year
 
-def home(request):
-    return render(request, 'home.html', {'year': year})
-
 def login_view(request):
     if request.method == 'POST':
         username = request.POST['username']
