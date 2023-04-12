@@ -29,6 +29,7 @@ SECRET_KEY = os.environ['SECRET_KEY']
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+# Introduce custom host
 ALLOWED_HOSTS = []
 
 
@@ -121,6 +122,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'ControlApp/static/'
+# For PYTHONANYWHERE activate this and deactivate STATICFILES_DIR
+# STATIC_URL = '/static/'
+# STATIC_ROOT = "/home/LuisBecerra/EmployeeControlApp/ControlApp/static"
 
 STATICFILES_DIR = [
     'ControlApp/static',
