@@ -6,7 +6,7 @@ class Employee(models.Model):
     name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
     id_number = models.CharField(max_length=20)
-    date_joined = models.DateField()
+    date_joined = models.DateField(default='2020-01-01')
     is_present = models.BooleanField(default=False)
 
     def __str__(self):

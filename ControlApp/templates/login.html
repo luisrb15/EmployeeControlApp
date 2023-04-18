@@ -3,19 +3,22 @@
 {% block title %}Login{% endblock %}
 
 {% block content %}
-<div class="login-form">
+<div>
     <h1>Bienvenido/a a La Flor del Bambú!</h1>
     <form method="post">
         {% csrf_token %}
-        <div class="form-group">
-            <label for="username">Username:</label>
-            <input type="text" name="username" id="username">
+        <div class="form-floating mb-3">
+            <input type="text" name="username" class="form-control" id="username" placeholder="Usuario">
+            <label for="floatingInput">Usuario:</label>
         </div>
-        <div class="form-group">
-            <label for="password">Password:</label>
-            <input type="password" name="password" id="password">
+        <div class="form-floating mb-3">
+            <input type="password" class="form-control" name="password" id="password" placeholder="Contraseña">
+            <label for="password">Contraseña:</label>
         </div>
-        <input type="submit" value="Login">
+        <div class="d-grid gap-2">
+            <button class="btn btn-primary" type="submit" value="Ingresar">Ingresar</button>
+            {% comment %} <a style="color:white;" class="btn btn-primary" href="{% url 'ControlApp:register' %}"><button class="btn btn-primary" type="button" value="Registrar"> Registrar</button></a> {% endcomment %}
+          </div>
     </form>
 </div>
 {% endblock %}
